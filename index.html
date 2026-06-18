@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Prompt Generator - AI视频提示词生成器</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎬 Video Prompt Generator</h1>
+            <p>专业级AI视频提示词编排工具</p>
+        </header>
+
+        <main>
+            <section class="parameter-section">
+                <h2>参数选择</h2>
+                <div class="parameter-grid" id="parameterGrid">
+                    <!-- 动态生成的参数选择器将在这里 -->
+                </div>
+            </section>
+
+            <section class="result-section">
+                <h2>生成的提示词</h2>
+                <div class="result-output" id="resultOutput">
+                    <p>请选择参数组合来生成提示词...</p>
+                </div>
+                <button class="copy-btn" onclick="copyPrompt()">复制提示词</button>
+            </section>
+        </main>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
