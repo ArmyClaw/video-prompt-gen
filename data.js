@@ -1,5 +1,14 @@
 // Video Prompt Generator - 参数数据结构
 const videoParams = {
+    // 为了向后兼容，添加module.exports
+    __esModule: true,
+    default: videoParams,
+    videoParams: videoParams
+};
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = videoParams;
+}
     cameraMovement: [
         {
             type: "Push",
@@ -388,9 +397,133 @@ const videoParams = {
         }
     ],
     
+    // Phase 2: 风格预设系统 - 一键加载完整风格组合
+    stylePresets: [
+        {
+            name: "赛博朋克",
+            nameEn: "Cyberpunk",
+            icon: "🌃",
+            description: "霓虹灯未来都市，高科技低生活",
+            filmGenre: "Sci-Fi",
+            lighting: "Neon",
+            color: "High Contrast",
+            texture: "Digital Sharp",
+            keywords: ["cyberpunk", "neon lights", "rainy streets", "holographic", "dystopian"],
+            promptHint: "cyberpunk aesthetic with glowing neon lights, wet reflective streets, holographic displays, dystopian futuristic atmosphere"
+        },
+        {
+            name: "黑色电影",
+            nameEn: "Film Noir",
+            icon: "🕶️",
+            description: "硬汉侦探，光影交错，道德灰色地带",
+            filmGenre: "Noir",
+            lighting: "Dramatic",
+            color: "High Contrast",
+            texture: "Film Grain",
+            keywords: ["film noir", "black and white", "shadows", "cigarette smoke", "detective", "rain"],
+            promptHint: "classic film noir style with dramatic high-contrast lighting, deep shadows, venetian blind light patterns, mysterious atmosphere"
+        },
+        {
+            name: "纪录片",
+            nameEn: "Documentary",
+            icon: "📹",
+            description: "真实记录，自然光线，无滤镜",
+            filmGenre: "Documentary",
+            lighting: "Natural",
+            color: "Desaturated",
+            texture: "Film Grain",
+            keywords: ["documentary", "realistic", "handheld", "natural", "authentic", "raw"],
+            promptHint: "documentary realism with natural lighting, handheld camera feel, authentic unfiltered atmosphere"
+        },
+        {
+            name: "日系动漫",
+            nameEn: "Anime",
+            icon: "🌸",
+            description: "明亮色彩，夸张表情，速度线",
+            filmGenre: "Anime",
+            lighting: "Soft",
+            color: "Warm",
+            texture: "Digital Sharp",
+            keywords: ["anime", "cel-shaded", "vibrant colors", "expressive", "Japanese animation"],
+            promptHint: "anime style with vibrant cel-shaded colors, expressive characters, dynamic dramatic angles"
+        },
+        {
+            name: "武侠诗意",
+            nameEn: "Wuxia",
+            icon: "⚔️",
+            description: "竹林飞剑，山水写意，侠骨柔情",
+            filmGenre: "Wuxia",
+            lighting: "Natural",
+            color: "Warm",
+            texture: "Cinematic",
+            keywords: ["wuxia", "martial arts", "ancient China", "bamboo forest", "flowing robes", "poetic"],
+            promptHint: "wuxia martial arts film aesthetic with sweeping landscapes, bamboo forests, flowing silk robes, poetic heroic atmosphere"
+        },
+        {
+            name: "恐怖惊悚",
+            nameEn: "Horror",
+            icon: "💀",
+            description: "黑暗压迫，步步惊心，Jump scare",
+            filmGenre: "Horror",
+            lighting: "Dramatic",
+            color: "Cool",
+            texture: "Film Grain",
+            keywords: ["horror", "dark", "eerie", "shadows", "suspense", "creepy", "fog"],
+            promptHint: "horror atmosphere with dark shadows, eerie cool tones, suspenseful framing, grainy texture"
+        },
+        {
+            name: "浪漫唯爱",
+            nameEn: "Romance",
+            icon: "💕",
+            description: "柔光暖调，蜜语甜言，心动特写",
+            filmGenre: "Romance",
+            lighting: "Soft",
+            color: "Warm",
+            texture: "Cinematic",
+            keywords: ["romantic", "soft focus", "warm tones", "intimate", "dreamy", "golden hour"],
+            promptHint: "romantic cinematic style with soft warm lighting, dreamy golden hour glow, intimate close-ups"
+        },
+        {
+            name: "热血动作",
+            nameEn: "Action",
+            icon: "💥",
+            description: "爆炸追车，拳拳到肉，肾上腺素",
+            filmGenre: "Action",
+            lighting: "Dramatic",
+            color: "High Contrast",
+            texture: "Digital Sharp",
+            keywords: ["action", "explosive", "fast-paced", "dynamic", "stunts", "intense"],
+            promptHint: "high-octane action style with dramatic contrast, sharp digital detail, explosive dynamic energy"
+        },
+        {
+            name: "复古VHS",
+            nameEn: "Retro VHS",
+            icon: "📼",
+            description: "80年代录像带，磁带噪点，怀旧故障",
+            filmGenre: "Sci-Fi",
+            lighting: "Neon",
+            color: "Desaturated",
+            texture: "VHS",
+            keywords: ["VHS", "retro", "80s", "glitch", "analog", "tracking lines", "nostalgic"],
+            promptHint: "retro VHS aesthetic with analog glitch artifacts, tracking lines, desaturated colors, nostalgic 80s feel"
+        },
+        {
+            name: "未来科技",
+            nameEn: "Future Tech",
+            icon: "🤖",
+            description: "冷色金属，AI未来，无机美感",
+            filmGenre: "Sci-Fi",
+            lighting: "Neon",
+            color: "Cool",
+            texture: "Digital Sharp",
+            keywords: ["futuristic", "clean", "minimalist", "AI", "robotic", "holographic", "precision"],
+            promptHint: "sleek futuristic style with cool blue tones, clean neon accents, sharp digital precision, minimalist tech aesthetic"
+        }
+    ],
+    
     templates: [
         {
-            name: "经典叙事",
+            name: "传统叙事",
             movement: "Push",
             angle: "Eye Level",
             shotSize: "Medium Shot",
@@ -468,5 +601,7 @@ let currentSelection = {
     filmGenre: null,
     lightingStyle: null,
     colorGrade: null,
-    filmTexture: null
+    filmTexture: null,
+    // Phase 2: 风格预设
+    stylePreset: null
 };
