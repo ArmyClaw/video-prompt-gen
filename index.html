@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Prompt Generator - AI视频提示词生成器</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="storyboard.css">
 </head>
 <body>
     <div class="container">
@@ -14,14 +15,57 @@
         </header>
 
         <main>
-            <section class="parameter-section">
+            <div class="mode-selector">
+                <button id="promptMode" onclick="switchMode('prompt')">提示词生成</button>
+                <button id="storyboardMode" onclick="switchMode('storyboard')">分镜编辑器</button>
+            </div>
+            
+            <section id="promptSection" class="parameter-section">
                 <h2>参数选择</h2>
                 <div class="parameter-grid" id="parameterGrid">
                     <!-- 动态生成的参数选择器将在这里 -->
                 </div>
             </section>
 
-            <section class="result-section">
+            <section id="storyboardSection" class="storyboard-section" style="display: none;">
+                <h2>分镜编辑器</h2>
+                
+                <div class="storyboard-controls">
+                    <button onclick="addNewShot()">添加镜头</button>
+                    <button onclick="clearTimeline()">清空时间线</button>
+                    <button onclick="exportStoryboard()">导出分镜</button>
+                </div>
+                
+                <div class="storyboard-timeline" id="storyboardTimeline">
+                    <div class="timeline-header">
+                        <div class="track-label">时间轴</div>
+                        <div class="track-content">0s</div>
+                        <div class="track-content">10s</div>
+                        <div class="track-content">20s</div>
+                        <div class="track-content">30s</div>
+                        <div class="track-content">40s</div>
+                        <div class="track-content">50s</div>
+                    </div>
+                    
+                    <div class="timeline-tracks">
+                        <div class="track" id="videoTrack">
+                            <div class="track-label">视频轨道</div>
+                            <div class="track-shots-container" id="videoShots">
+                                <!-- 镜头将在这里动态添加 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="shot-details" id="shotDetails">
+                    <h3>镜头详情</h3>
+                    <div id="shotDetailsContent">
+                        <p>选择一个镜头查看详情</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="resultSection" class="result-section">
                 <h2>生成的提示词</h2>
                 <div class="result-output" id="resultOutput">
                     <p>请选择参数组合来生成提示词...</p>

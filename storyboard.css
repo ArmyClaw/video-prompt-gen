@@ -1,0 +1,235 @@
+/* 分镜编辑器专用样式 */
+
+/* 模式选择器 */
+.mode-selector {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.mode-selector button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #667eea;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mode-selector button.active {
+    background: #764ba2;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.mode-selector button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+
+/* 分镜编辑器样式 */
+.storyboard-section {
+    grid-column: 1 / -1;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.storyboard-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.storyboard-controls button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    background: #4CAF50;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s ease;
+}
+
+.storyboard-controls button:hover {
+    background: #45a049;
+}
+
+.storyboard-timeline {
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+.timeline-header {
+    display: flex;
+    background: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+    min-width: 800px;
+}
+
+.timeline-header .track-label {
+    width: 100px;
+    padding: 10px;
+    font-weight: bold;
+    border-right: 1px solid #ddd;
+}
+
+.timeline-header .track-content {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    border-right: 1px solid #ddd;
+    font-size: 12px;
+    color: #666;
+}
+
+.timeline-tracks {
+    position: relative;
+    min-height: 100px;
+}
+
+.track {
+    display: flex;
+    border-bottom: 1px solid #eee;
+    min-height: 80px;
+}
+
+.track-label {
+    width: 100px;
+    padding: 10px;
+    font-weight: bold;
+    background: #f8f9fa;
+    border-right: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.track-shots-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    min-height: 80px;
+    position: relative;
+}
+
+.shot {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin: 0 5px;
+    cursor: move;
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    position: relative;
+    min-width: 80px;
+    text-align: center;
+    user-select: none;
+}
+
+.shot:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.shot.selected {
+    outline: 3px solid #ffeb3b;
+    outline-offset: 2px;
+}
+
+.shot-duration {
+    font-size: 12px;
+    opacity: 0.9;
+    margin-top: 4px;
+}
+
+.shot-title {
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.drop-zone {
+    border: 2px dashed #ccc;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 4px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+.drop-zone.drag-over {
+    border-color: #667eea;
+    background: rgba(102, 126, 234, 0.2);
+}
+
+/* 镜头详情面板 */
+.shot-details {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.shot-details h3 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.shot-details form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.shot-details .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.shot-details label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.shot-details input,
+.shot-details select,
+.shot-details textarea {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.shot-details textarea {
+    resize: vertical;
+    min-height: 80px;
+    grid-column: 1 / -1;
+}
+
+.shot-details button {
+    padding: 8px 16px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.shot-details button:hover {
+    background: #45a049;
+}
