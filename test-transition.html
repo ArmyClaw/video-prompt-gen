@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>转场功能测试页面</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .test-section h2 {
+            color: #2c3e50;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #34495e;
+        }
+        
+        select, input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        select:focus, input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        
+        .button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .button:hover {
+            background: #2980b9;
+        }
+        
+        .transition-results {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .transition-card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .transition-card h5 {
+            color: #2c3e50;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        
+        .transition-card p {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        
+        .prompt-output {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .copy-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .copy-btn:hover {
+            background: #219a52;
+        }
+        
+        .copy-btn.copied {
+            background: #8e44ad;
+        }
+        
+        .log-section {
+            background: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        
+        .log-section h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        
+        #logOutput {
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 转场功能测试页面</h1>
+        
+        <div class="test-section">
+            <h2>功能测试</h2>
+            <button class="button" onclick="testTransitionGeneration()">测试转场生成功能</button>
+            <button class="button" onclick="testPromptGeneration()">测试提示词生成功能</button>
+            <button class="button" onclick="testIntegration()">测试完整集成</button>
+            <button class="button" onclick="clearLog()">清除日志</button>
+        </div>
+        
+        <div class="test-section">
+            <h2>转场生成器演示</h2>
+            <p>选择前后镜头，自动生成合适的转场效果和AI提示词</p>
+            
+            <div class="input-group">
+                <label for="fromShot">前一个镜头</label>
+                <select id="fromShot" onchange="updateTransitionAnalysis()">
+                    <option value="">选择前一个镜头</option>
+                    <option value="0">开场远景 (Extreme Long Shot)</option>
+                    <option value="1">城市街道全景 (Long Shot)</option>
+                    <option value="2">人物中景 (Medium Shot)</option>
+                    <option value="3">面部特写 (Close Up)</option>
+                </select>
+            </div>
+            
+            <div class="input-group">
+                <label for="toShot">后一个镜头</label>
+                <select id="toShot" onchange="updateTransitionAnalysis()">
+                    <option value="">选择后一个镜头</option>
+                    <option value="0">开场远景 (Extreme Long Shot)</option>
+                    <option value="1">城市街道全景 (Long Shot)</option>
+                    <option value="2">人物中景 (Medium Shot)</option>
+                    <option value="3">面部特写 (Close Up)</option>
+                </select>
+            </div>
+            
+            <div class="transition-results" id="transitionResults">
+                <h4>推荐转场效果</h4>
+                <div id="transitionRecommendations"></div>
+                
+                <h4>转场提示词</h4>
+                <div class="prompt-output" id="transitionPrompt"></div>
+                
+                <button onclick="copyTransitionPrompt()" class="copy-btn">复制转场提示词</button>
+            </div>
+        </div>
+        
+        <div class="log-section">
+            <h3>测试日志</h3>
+            <div id="logOutput">等待测试开始...</div>
+        </div>
+    </div>
+
+    <!-- 转场数据 -->
+    <script src="transitions.js"></script>
+    
+    <!-- 测试脚本 -->
+    <script>
+        // 模拟镜头数据
+        const testShots = [
+            {
+                title: "开场远景",
+                camera: {
+                    shotSize: "Extreme Long Shot",
+                    movement: "Static",
+                    angle: "Eye Level",
+                    speed: "Normal"
+                },
+                content: {
+                    subject: "城市天际线",
+                    mood: "Epic, Grand",
+                    atmosphere: "现代都市"
+                }
+            },
+            {
+                title: "城市街道全景",
+                camera: {
+                    shotSize: "Long Shot",
+                    movement: "Track",
+                    angle: "Eye Level",
+                    speed: "Normal"
+                },
+                content: {
+                    subject: "繁华街道",
+                    mood: "Busy, Active",
+                    atmosphere: "都市生活"
+                }
+            },
+            {
+                title: "人物中景",
+                camera: {
+                    shotSize: "Medium Shot",
+                    movement: "Dolly",
+                    angle: "Eye Level",
+                    speed: "Slow"
+                },
+                content: {
+                    subject: "行人",
+                    mood: "Contemplative",
+                    atmosphere: "日常场景"
+                }
+            },
+            {
+                title: "面部特写",
+                camera: {
+                    shotSize: "Close Up",
+                    movement: "Static",
+                    angle: "Eye Level",
+                    speed: "Ultra Slow"
+                },
+                content: {
+                    subject: "人物表情",
+                    mood: "Emotional",
+                    atmosphere: "内心戏"
+                }
+            }
+        ];
+
+        let logOutput = document.getElementById('logOutput');
+        
+        function log(message) {
+            const timestamp = new Date().toLocaleTimeString();
+            logOutput.textContent += `[${timestamp}] ${message}\n`;
+            logOutput.scrollTop = logOutput.scrollHeight;
+        }
+
+        function clearLog() {
+            logOutput.textContent = '日志已清除...';
+        }
+
+        function testTransitionGeneration() {
+            log('=== 测试转场生成功能 ===');
+            
+            try {
+                // 测试是否加载了转场数据
+                if (typeof TransitionGenerator === 'undefined') {
+                    throw new Error('TransitionGenerator 未加载');
+                }
+                
+                log('✅ TransitionGenerator 已加载');
+                
+                // 测试转场数据结构
+                const transitions = TransitionGenerator.transitions;
+                log(`✅ 加载了 ${transitions.length} 个转场效果`);
+                
+                // 测试转场推荐算法
+                const fromShot = testShots[0];
+                const toShot = testShots[1];
+                const recommendations = TransitionGenerator.recommendTransition(fromShot, toShot);
+                
+                log(`✅ 生成了 ${recommendations.length} 个转场推荐`);
+                recommendations.forEach((rec, index) => {
+                    log(`  推荐 ${index + 1}: ${rec.transition.name} - ${rec.reason}`);
+                });
+                
+                log('✅ 转场生成功能测试完成');
+                
+            } catch (error) {
+                log(`❌ 测试失败: ${error.message}`);
+            }
+        }
+
+        function testPromptGeneration() {
+            log('=== 测试提示词生成功能 ===');
+            
+            try {
+                if (typeof TransitionGenerator === 'undefined') {
+                    throw new Error('TransitionGenerator 未加载');
+                }
+                
+                const fromShot = testShots[2];
+                const toShot = testShots[3];
+                const transition = TransitionGenerator.transitions[0];
+                
+                // 测试提示词生成
+                const prompt = TransitionGenerator.generateTransitionPrompt(transition, fromShot, toShot);
+                log('✅ 生成分镜提示词:');
+                log(prompt);
+                
+                // 测试AI提示词生成
+                const aiPrompt = TransitionGenerator.getTransitionAIPrompt(transition, fromShot, toShot);
+                log('✅ 生成AI提示词:');
+                log(aiPrompt);
+                
+                log('✅ 提示词生成功能测试完成');
+                
+            } catch (error) {
+                log(`❌ 测试失败: ${error.message}`);
+            }
+        }
+
+        function testIntegration() {
+            log('=== 测试完整集成 ===');
+            
+            try {
+                // 测试页面交互
+                updateTransitionAnalysis();
+                
+                // 验证DOM元素
+                const resultsDiv = document.getElementById('transitionResults');
+                const recommendationsDiv = document.getElementById('transitionRecommendations');
+                const promptDiv = document.getElementById('transitionPrompt');
+                
+                if (!resultsDiv || !recommendationsDiv || !promptDiv) {
+                    throw new Error('DOM元素缺失');
+                }
+                
+                log('✅ 页面集成正常');
+                log('✅ DOM元素完整');
+                
+                // 测试复制功能
+                if (promptDiv.textContent) {
+                    log('✅ 有转场提示词生成');
+                } else {
+                    log('⚠️  请选择镜头后生成提示词');
+                }
+                
+                log('✅ 完整集成测试完成');
+                
+            } catch (error) {
+                log(`❌ 集成测试失败: ${error.message}`);
+            }
+        }
+
+        // 更新转场分析
+        function updateTransitionAnalysis() {
+            const fromIndex = parseInt(document.getElementById('fromShot').value);
+            const toIndex = parseInt(document.getElementById('toShot').value);
+            
+            if (isNaN(fromIndex) || isNaN(toIndex) || fromIndex === toIndex) {
+                document.getElementById('transitionResults').style.display = 'none';
+                return;
+            }
+            
+            const fromShot = testShots[fromIndex];
+            const toShot = testShots[toIndex];
+            
+            // 生成转场推荐
+            const recommendations = TransitionGenerator.recommendTransition(fromShot, toShot);
+            
+            // 显示结果
+            const resultsDiv = document.getElementById('transitionResults');
+            const recommendationsDiv = document.getElementById('transitionRecommendations');
+            const promptDiv = document.getElementById('transitionPrompt');
+            
+            // 显示推荐转场
+            recommendationsDiv.innerHTML = recommendations.map(rec => `
+                <div class="transition-card">
+                    <h5>${rec.transition.name}</h5>
+                    <p><strong>类型:</strong> ${rec.transition.type}</p>
+                    <p><strong>描述:</strong> ${rec.transition.description}</p>
+                    <p><strong>时长:</strong> ${rec.transition.duration}</p>
+                    <p><strong>推荐理由:</strong> ${rec.reason}</p>
+                </div>
+            `).join('');
+            
+            // 生成提示词
+            const prompt = TransitionGenerator.generateTransitionPrompt(recommendations[0].transition, fromShot, toShot);
+            promptDiv.textContent = prompt;
+            
+            resultsDiv.style.display = 'block';
+            
+            log(`📊 生成了从 "${fromShot.title}" 到 "${toShot.title}" 的转场推荐`);
+        }
+
+        // 复制转场提示词
+        function copyTransitionPrompt() {
+            const promptOutput = document.getElementById('transitionPrompt');
+            const promptText = promptOutput.textContent;
+            
+            if (promptText) {
+                navigator.clipboard.writeText(promptText).then(() => {
+                    const copyBtn = document.querySelector('.copy-btn');
+                    const originalText = copyBtn.textContent;
+                    copyBtn.textContent = '已复制!';
+                    copyBtn.style.background = '#8e44ad';
+                    
+                    setTimeout(() => {
+                        copyBtn.textContent = originalText;
+                        copyBtn.style.background = '#27ae60';
+                    }, 2000);
+                    
+                    log('✅ 转场提示词已复制到剪贴板');
+                }).catch(err => {
+                    console.error('复制失败:', err);
+                    alert('复制失败，请手动复制');
+                    log('❌ 复制失败');
+                });
+            }
+        }
+
+        // 页面加载完成后初始化
+        window.addEventListener('load', function() {
+            log('页面加载完成，开始测试...');
+            testTransitionGeneration();
+        });
+    </script>
+</body>
+</html>
