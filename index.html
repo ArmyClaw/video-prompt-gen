@@ -33,7 +33,18 @@
                 <div class="storyboard-controls">
                     <button onclick="addNewShot()">添加镜头</button>
                     <button onclick="clearTimeline()">清空时间线</button>
+                    <div class="platform-selector">
+                        <label for="platformSelect">导出平台:</label>
+                        <select id="platformSelect">
+                            <option value="sora">Sora 2 (OpenAI)</option>
+                            <option value="kling">Kling 3.0</option>
+                            <option value="runway">Runway Gen-4</option>
+                            <option value="veo">Google Veo 3.1</option>
+                            <option value="pika">Pika Labs 1.0</option>
+                        </select>
+                    </div>
                     <button onclick="exportStoryboard()">导出分镜</button>
+                    <button onclick="exportPlatformPrompts()">平台导出</button>
                 </div>
                 
                 <div class="storyboard-timeline" id="storyboardTimeline">

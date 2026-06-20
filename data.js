@@ -3,12 +3,9 @@ const videoParams = {
     // 为了向后兼容，添加module.exports
     __esModule: true,
     default: videoParams,
-    videoParams: videoParams
-};
-
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = videoParams;
-}
+    videoParams: videoParams,
+    
+    // 相机运动参数
     cameraMovement: [
         {
             type: "Push",
@@ -82,6 +79,7 @@ if (typeof module !== 'undefined' && module.exports) {
         }
     ],
     
+    // 镜头角度参数
     cameraAngle: [
         {
             type: "Eye Level",
@@ -101,491 +99,169 @@ if (typeof module !== 'undefined' && module.exports) {
             type: "High Angle",
             name: "俯角",
             effect: "从上方拍摄",
-            psychological: "弱小，被控制，全局视角",
+            psychological: "弱小，压抑，俯视",
             value: "high angle"
+        },
+        {
+            type: "Dutch Angle",
+            name: "斜角",
+            effect: "倾斜拍摄",
+            psychological: "紧张，混乱，不安",
+            value: "dutch angle"
+        },
+        {
+            type: "Over the Shoulder",
+            name: "过肩",
+            effect: "从角色肩后拍摄",
+            psychological: "亲密，对话关系",
+            value: "over the shoulder"
         },
         {
             type: "Bird's Eye",
             name: "鸟瞰",
-            effect: "垂直正上方",
-            psychological: "上帝视角，空间布局",
-            value: "birds eye view"
+            effect: "从正上方拍摄",
+            psychological: "宏观，上帝视角",
+            value: "bird's eye"
         },
         {
-            type: "Dutch Angle",
-            name: "荷兰角",
-            effect: "倾斜角度",
-            psychological: "不稳定，紧张，不安",
-            value: "dutch angle"
-        },
-        {
-            type: "Overhead",
-            name: "顶拍",
-            effect: "垂直向下",
-            psychological: "平面感，设计感",
-            value: "overhead shot"
+            type: "Worm's Eye",
+            name: "仰视",
+            effect: "从正下方拍摄",
+            psychological: "敬畏，高大",
+            value: "worm's eye"
         }
     ],
     
+    // 景别参数
     shotSize: [
         {
             type: "Extreme Long Shot",
             name: "大远景",
-            ratio: "< 5%",
-            scenario: "展示环境，建立场景",
+            ratio: "1:20",
+            scenario: "展示环境，营造氛围",
             value: "extreme long shot"
         },
         {
             type: "Long Shot",
             name: "远景",
-            ratio: "5-10%",
-            scenario: "全身，展示人物与环境关系",
+            ratio: "1:6",
+            scenario: "展示主体与环境关系",
             value: "long shot"
         },
         {
-            type: "Full Shot",
-            name: "全景",
-            ratio: "15-25%",
-            scenario: "全身，人物完整姿态",
-            value: "full shot"
+            type: "Medium Long Shot",
+            name: "中远景",
+            ratio: "1:3",
+            scenario: "腰部以上，展现环境细节",
+            value: "medium long shot"
         },
         {
             type: "Medium Shot",
             name: "中景",
-            ratio: "25-50%",
-            scenario: "腰部以上，上半身动作",
+            ratio: "1:2",
+            scenario: "腰部到胸部，对话场景",
             value: "medium shot"
         },
         {
             type: "Medium Close Up",
             name: "中近景",
-            ratio: "50-65%",
-            scenario: "胸部以上，表情细节",
+            ratio: "1:1",
+            scenario: "胸部以上，情感表达",
             value: "medium close up"
         },
         {
             type: "Close Up",
             name: "近景",
-            ratio: "65-85%",
-            scenario: "肩部以上，面部表情",
+            ratio: "1:1",
+            scenario: "头部，面部表情",
             value: "close up"
         },
         {
             type: "Extreme Close Up",
             name: "大特写",
-            ratio: "> 85%",
-            scenario: "眼睛等局部细节",
+            ratio: "1:1",
+            scenario: "眼睛，细节，强调",
             value: "extreme close up"
         }
     ],
     
+    // 运动速度参数
     movementSpeed: [
         {
-            type: "Ultra Slow",
-            name: "超慢",
-            framerate: "24fps以下",
-            emotional: "艺术感，电影感",
-            value: "ultra slow motion"
-        },
-        {
-            type: "Slow",
-            name: "慢",
+            type: "Slow Motion",
+            name: "慢动作",
             framerate: "24-30fps",
-            emotional: "沉思，优雅",
+            emotional: "优雅，浪漫，史诗感",
             value: "slow motion"
         },
         {
             type: "Normal",
             name: "正常",
             framerate: "30-60fps",
-            emotional: "标准，平衡",
-            value: "normal speed"
+            emotional: "自然，日常，真实",
+            value: "normal"
         },
         {
-            type: "Fast",
-            name: "快",
+            type: "Fast Motion",
+            name: "快动作",
             framerate: "60-120fps",
-            emotional: "动感，紧张",
+            emotional: "紧张，兴奋，活力",
             value: "fast motion"
         },
         {
-            type: "Ultra Fast",
-            name: "超快",
-            framerate: "120fps以上",
-            emotional: "动态模糊，能量感",
-            value: "ultra fast motion"
-        },
-        {
-            type: "Variable",
-            name: "变速",
-            framerate: "混合速度",
-            emotional: "叙事节奏变化",
-            value: "variable speed"
+            type: "Time Lapse",
+            name: "延时",
+            framerate: "1-2fps",
+            emotional: "变化，时光流逝，壮观",
+            value: "time lapse"
         }
     ],
     
-    // Phase 2: 电影风格系统
-    filmGenres: [
-        {
-            type: "Sci-Fi",
-            name: "科幻",
-            keywords: ["futuristic", "technology", "space", "robots", "cyberpunk"],
-            visual: ["neon", "glowing", "metallic", "digital"],
-            atmosphere: "epic, visionary, technological wonder"
-        },
-        {
-            type: "Noir",
-            name: "黑色电影",
-            keywords: ["mystery", "crime", "shadow", "rain", "detective"],
-            visual: ["high contrast", "low key lighting", "venetian blinds", "wet streets"],
-            atmosphere: "dark, cynical, suspenseful"
-        },
-        {
-            type: "Documentary",
-            name: "纪录片",
-            keywords: ["real", "authentic", "raw", "unfiltered", "observational"],
-            visual: ["natural lighting", "handheld", "real locations", "talking heads"],
-            atmosphere: "objective, factual, intimate"
-        },
-        {
-            type: "Anime",
-            name: "动画",
-            keywords: ["anime", "manga", "japanese", "cel-shaded", "exaggerated"],
-            visual: ["bright colors", "expressive", "speed lines", "dramatic angles"],
-            atmosphere: "dynamic, emotional, stylized"
-        },
-        {
-            type: "Wuxia",
-            name: "武侠",
-            keywords: ["martial arts", "ancient china", "kung fu", "wuxia", "legendary"],
-            visual: ["traditional costumes", "bamboo forests", "mountain temples", "clouds"],
-            atmosphere: "poetic, heroic, mystical"
-        },
-        {
-            type: "Horror",
-            name: "恐怖",
-            keywords: ["scary", "fear", "jump scare", "paranormal", "tension"],
-            visual: ["dark", "spooky", "gore", "shadows", "unsteady"],
-            atmosphere: "terrifying, suspenseful, disturbing"
-        },
-        {
-            type: "Romance",
-            name: "爱情",
-            keywords: ["love", "romantic", "passion", "intimate", "emotional"],
-            visual: ["soft focus", "warm colors", "close ups", "breezy", "beautiful"],
-            atmosphere: "tender, dreamy, heartwarming"
-        },
-        {
-            type: "Action",
-            name: "动作",
-            keywords: ["exciting", "intense", "fast", "explosive", "adventure"],
-            visual: ["dynamic", "movement", "close combat", "explosions", "stunts"],
-            atmosphere: "thrilling, energetic, spectacular"
-        }
-    ],
-    
-    lightingStyles: [
-        {
-            type: "Natural",
-            name: "自然光",
-            description: "模拟自然光线，真实感强",
-            scenarios: ["户外拍摄", "日间场景", "真实记录"],
-            characteristics: ["soft shadows", "natural colors", "time-based", "directional"],
-            value: "natural lighting"
-        },
-        {
-            type: "Neon",
-            name: "霓虹灯",
-            description: "城市夜景，科技感强",
-            scenarios: ["夜晚街道", "夜店", "未来城市", "赛博朋克"],
-            characteristics: ["bright colors", "glowing effects", "high contrast", "urban"],
-            value: "neon lighting"
-        },
-        {
-            type: "Dramatic",
-            name: "戏剧性",
-            description: "强烈的光影对比，戏剧效果",
-            scenarios: ["关键场景", "重要对话", "情绪高潮", "内心戏"],
-            characteristics: ["high contrast", "chiaroscuro", "emotional", "focused"],
-            value: "dramatic lighting"
-        },
-        {
-            type: "Soft",
-            name: "柔光",
-            description: "柔和光线，降低阴影强度",
-            scenarios: ["浪漫场景", "温馨氛围", "美丽特写", "柔美效果"],
-            characteristics: ["low contrast", "smooth transitions", "flattering", "gentle"],
-            value: "soft lighting"
-        },
-        {
-            type: "Backlight",
-            name: "逆光",
-            description: "光源在主体后方，营造轮廓感",
-            scenarios: ["轮廓特写", "剪影效果", "神秘氛围", "浪漫场景"],
-            characteristics: ["rim light", "silhouette", "mysterious", "glowing edges"],
-            value: "backlighting"
-        }
-    ],
-    
-    colorGrading: [
-        {
-            type: "Warm",
-            name: "暖调",
-            description: "偏暖色调，温馨舒适",
-            characteristics: ["orange tint", "golden hour", "warm emotions", "nostalgic"],
-            scenarios: ["日落", "黄昏", "怀旧场景", "温馨时刻"],
-            value: "warm color grading"
-        },
-        {
-            type: "Cool",
-            name: "冷调",
-            description: "偏冷色调，清新冷静",
-            characteristics: ["blue tint", "winter", "professional", "calm"],
-            scenarios: ["夜晚", "科技", "专业", "冷峻"],
-            value: "cool color grading"
-        },
-        {
-            type: "Desaturated",
-            name: "去饱和",
-            description: "色彩饱和度降低，复古质感",
-            characteristics: ["muted colors", "vintage", "retro", "emotional"],
-            scenarios: ["回忆", "历史", "情感", "岁月"],
-            value: "desaturated color grading"
-        },
-        {
-            type: "High Contrast",
-            name: "高对比度",
-            description: "强烈对比，戏剧性效果",
-            characteristics: ["deep blacks", "bright whites", "bold", "impactful"],
-            scenarios: ["高潮", "紧张", "震撼", "强烈"],
-            value: "high contrast color grading"
-        }
-    ],
-    
-    filmTexture: [
-        {
-            type: "Film Grain",
-            name: "胶片颗粒",
-            description: "经典胶片质感，颗粒感强",
-            characteristics: ["visible grain", "vintage", "organic", "authentic"],
-            scenarios: ["怀旧", "经典", "纪录片", "真实感"],
-            value: "film grain texture"
-        },
-        {
-            type: "Digital Sharp",
-            name: "数码锐利",
-            description: "数字高清，清晰锐利",
-            characteristics: ["sharp", "clean", "modern", "precise"],
-            scenarios: ["现代", "科技", "清晰", "专业"],
-            value: "digital sharp texture"
-        },
-        {
-            type: "VHS",
-            name: "复古VHS",
-            description: "VHS磁带质感，模拟老旧录像",
-            characteristics: ["glitch", "tracking lines", "blurry", "nostalgic"],
-            scenarios: ["复古", "80年代", "录像", "模拟"],
-            value: "VHS texture"
-        },
-        {
-            type: "Cinematic",
-            name: "电影质感",
-            description: "专业电影级质感",
-            characteristics: ["rich", "professional", "theatrical", "polished"],
-            scenarios: ["专业", "电影", "高质量", "精致"],
-            value: "cinematic texture"
-        }
-    ],
-    
-    // Phase 2: 风格预设系统 - 一键加载完整风格组合
-    stylePresets: [
-        {
-            name: "赛博朋克",
-            nameEn: "Cyberpunk",
-            icon: "🌃",
-            description: "霓虹灯未来都市，高科技低生活",
-            filmGenre: "Sci-Fi",
-            lighting: "Neon",
-            color: "High Contrast",
-            texture: "Digital Sharp",
-            keywords: ["cyberpunk", "neon lights", "rainy streets", "holographic", "dystopian"],
-            promptHint: "cyberpunk aesthetic with glowing neon lights, wet reflective streets, holographic displays, dystopian futuristic atmosphere"
-        },
-        {
-            name: "黑色电影",
-            nameEn: "Film Noir",
-            icon: "🕶️",
-            description: "硬汉侦探，光影交错，道德灰色地带",
-            filmGenre: "Noir",
-            lighting: "Dramatic",
-            color: "High Contrast",
-            texture: "Film Grain",
-            keywords: ["film noir", "black and white", "shadows", "cigarette smoke", "detective", "rain"],
-            promptHint: "classic film noir style with dramatic high-contrast lighting, deep shadows, venetian blind light patterns, mysterious atmosphere"
-        },
-        {
-            name: "纪录片",
-            nameEn: "Documentary",
-            icon: "📹",
-            description: "真实记录，自然光线，无滤镜",
-            filmGenre: "Documentary",
-            lighting: "Natural",
-            color: "Desaturated",
-            texture: "Film Grain",
-            keywords: ["documentary", "realistic", "handheld", "natural", "authentic", "raw"],
-            promptHint: "documentary realism with natural lighting, handheld camera feel, authentic unfiltered atmosphere"
-        },
-        {
-            name: "日系动漫",
-            nameEn: "Anime",
-            icon: "🌸",
-            description: "明亮色彩，夸张表情，速度线",
-            filmGenre: "Anime",
-            lighting: "Soft",
-            color: "Warm",
-            texture: "Digital Sharp",
-            keywords: ["anime", "cel-shaded", "vibrant colors", "expressive", "Japanese animation"],
-            promptHint: "anime style with vibrant cel-shaded colors, expressive characters, dynamic dramatic angles"
-        },
-        {
-            name: "武侠诗意",
-            nameEn: "Wuxia",
-            icon: "⚔️",
-            description: "竹林飞剑，山水写意，侠骨柔情",
-            filmGenre: "Wuxia",
-            lighting: "Natural",
-            color: "Warm",
-            texture: "Cinematic",
-            keywords: ["wuxia", "martial arts", "ancient China", "bamboo forest", "flowing robes", "poetic"],
-            promptHint: "wuxia martial arts film aesthetic with sweeping landscapes, bamboo forests, flowing silk robes, poetic heroic atmosphere"
-        },
-        {
-            name: "恐怖惊悚",
-            nameEn: "Horror",
-            icon: "💀",
-            description: "黑暗压迫，步步惊心，Jump scare",
-            filmGenre: "Horror",
-            lighting: "Dramatic",
-            color: "Cool",
-            texture: "Film Grain",
-            keywords: ["horror", "dark", "eerie", "shadows", "suspense", "creepy", "fog"],
-            promptHint: "horror atmosphere with dark shadows, eerie cool tones, suspenseful framing, grainy texture"
-        },
-        {
-            name: "浪漫唯爱",
-            nameEn: "Romance",
-            icon: "💕",
-            description: "柔光暖调，蜜语甜言，心动特写",
-            filmGenre: "Romance",
-            lighting: "Soft",
-            color: "Warm",
-            texture: "Cinematic",
-            keywords: ["romantic", "soft focus", "warm tones", "intimate", "dreamy", "golden hour"],
-            promptHint: "romantic cinematic style with soft warm lighting, dreamy golden hour glow, intimate close-ups"
-        },
-        {
-            name: "热血动作",
-            nameEn: "Action",
-            icon: "💥",
-            description: "爆炸追车，拳拳到肉，肾上腺素",
-            filmGenre: "Action",
-            lighting: "Dramatic",
-            color: "High Contrast",
-            texture: "Digital Sharp",
-            keywords: ["action", "explosive", "fast-paced", "dynamic", "stunts", "intense"],
-            promptHint: "high-octane action style with dramatic contrast, sharp digital detail, explosive dynamic energy"
-        },
-        {
-            name: "复古VHS",
-            nameEn: "Retro VHS",
-            icon: "📼",
-            description: "80年代录像带，磁带噪点，怀旧故障",
-            filmGenre: "Sci-Fi",
-            lighting: "Neon",
-            color: "Desaturated",
-            texture: "VHS",
-            keywords: ["VHS", "retro", "80s", "glitch", "analog", "tracking lines", "nostalgic"],
-            promptHint: "retro VHS aesthetic with analog glitch artifacts, tracking lines, desaturated colors, nostalgic 80s feel"
-        },
-        {
-            name: "未来科技",
-            nameEn: "Future Tech",
-            icon: "🤖",
-            description: "冷色金属，AI未来，无机美感",
-            filmGenre: "Sci-Fi",
-            lighting: "Neon",
-            color: "Cool",
-            texture: "Digital Sharp",
-            keywords: ["futuristic", "clean", "minimalist", "AI", "robotic", "holographic", "precision"],
-            promptHint: "sleek futuristic style with cool blue tones, clean neon accents, sharp digital precision, minimalist tech aesthetic"
-        }
-    ],
-    
+    // 预设模板
     templates: [
         {
-            name: "传统叙事",
-            movement: "Push",
-            angle: "Eye Level",
-            shotSize: "Medium Shot",
-            speed: "Normal",
-            style: "标准，平衡",
-            filmGenre: "Documentary",
-            lighting: "Natural",
-            color: "Normal",
-            texture: "Digital Sharp",
-            description: "传统的叙事视角，适合大多数场景"
+            name: "电影风格",
+            style: "cinematic",
+            description: "专业的电影拍摄风格，注重构图和光影",
+            parameters: {
+                cameraMovement: "Dolly",
+                cameraAngle: "Eye Level",
+                shotSize: "Medium Shot",
+                movementSpeed: "Normal"
+            }
         },
         {
-            name: "科幻动作",
-            movement: "Dolly",
-            angle: "Low Angle",
-            shotSize: "Medium Close Up",
-            speed: "Fast",
-            style: "动感，紧张",
-            filmGenre: "Sci-Fi",
-            lighting: "Neon",
-            color: "High Contrast",
-            texture: "Digital Sharp",
-            description: "科幻电影风格，充满未来科技感"
+            name: "纪录片风格",
+            style: "documentary",
+            description: "真实自然的纪录片拍摄风格",
+            parameters: {
+                cameraMovement: "Handheld",
+                cameraAngle: "Eye Level",
+                shotSize: "Long Shot",
+                movementSpeed: "Normal"
+            }
         },
         {
-            name: "恐怖悬疑",
-            movement: "Handheld",
-            angle: "Dutch Angle",
-            shotSize: "Close Up",
-            speed: "Slow",
-            style: "不安，压抑",
-            filmGenre: "Horror",
-            lighting: "Dramatic",
-            color: "Cool",
-            texture: "Film Grain",
-            description: "不稳定视角营造紧张恐怖氛围"
+            name: "音乐视频",
+            style: "music video",
+            description: "动感强烈的音乐视频风格",
+            parameters: {
+                cameraMovement: "Track",
+                cameraAngle: "Dynamic",
+                shotSize: "Medium Close Up",
+                movementSpeed: "Fast Motion"
+            }
         },
         {
-            name: "浪漫爱情",
-            movement: "Zoom",
-            angle: "Eye Level",
-            shotSize: "Close Up",
-            speed: "Slow",
-            style: "浪漫，亲密",
-            filmGenre: "Romance",
-            lighting: "Soft",
-            color: "Warm",
-            texture: "Cinematic",
-            description: "细腻浪漫的特写镜头，突出情感表达"
-        },
-        {
-            name: "武侠奇幻",
-            movement: "Crane",
-            angle: "Bird's Eye",
-            shotSize: "Extreme Long Shot",
-            speed: "Ultra Slow",
-            style: "艺术性，诗意",
-            filmGenre: "Wuxia",
-            lighting: "Natural",
-            color: "Warm",
-            texture: "Film Grain",
-            description: "富有艺术美感的鸟瞰视角，适合武侠场景"
+            name: "广告风格",
+            style: "commercial",
+            description: "精美的广告拍摄风格",
+            parameters: {
+                cameraMovement: "Dolly",
+                cameraAngle: "Low Angle",
+                shotSize: "Medium Close Up",
+                movementSpeed: "Slow Motion"
+            }
         }
     ]
 };
@@ -605,3 +281,60 @@ let currentSelection = {
     // Phase 2: 风格预设
     stylePreset: null
 };
+
+// 平台映射配置
+const platformMapping = {
+    'sora': {
+        name: 'Sora 2 (OpenAI)',
+        maxTokens: 400,
+        promptTemplate: (shot) => {
+            const cameraInfo = `camera ${shot.camera.movement}, ${shot.camera.angle}, ${shot.camera.shotSize}`;
+            const contentInfo = `${shot.content.subject}, ${shot.content.mood}, ${shot.content.atmosphere}`;
+            return `${shot.title}: ${cameraInfo}, ${contentInfo}, ${shot.style || 'realistic'}`;
+        },
+        description: '支持15-25秒视频，物理引擎优秀，适合自然场景'
+    },
+    'kling': {
+        name: 'Kling 3.0',
+        maxTokens: 300,
+        promptTemplate: (shot) => {
+            const cameraInfo = `${shot.camera.movement} camera, ${shot.camera.angle} angle`;
+            const timeControl = `${shot.duration} seconds`;
+            return `Scene: ${shot.title}, ${cameraInfo}, ${timeControl}, ${shot.style || 'high quality'}`;
+        },
+        description: '支持4K视频，角色一致性优秀，按秒计费'
+    },
+    'runway': {
+        name: 'Runway Gen-4',
+        maxTokens: 350,
+        promptTemplate: (shot) => {
+            const cameraInfo = `Camera: ${shot.camera.movement} with ${shot.camera.angle} angle`;
+            const style = shot.style || 'cinematic';
+            return `${shot.title}: ${cameraInfo}, Style: ${style}, Duration: ${shot.duration}s`;
+        },
+        description: '支持多种视频风格，专业编辑工具，实时预览'
+    },
+    'veo': {
+        name: 'Google Veo 3.1',
+        maxTokens: 450,
+        promptTemplate: (shot) => {
+            const cameraInfo = `${shot.camera.movement}, ${shot.camera.shotSize} shot`;
+            const content = `${shot.content.subject} in ${shot.content.atmosphere}`;
+            return `${shot.title}: ${content}, ${cameraInfo}, ${shot.style || 'realistic'}`;
+        },
+        description: 'Google新一代视频生成器，理解能力强，高质量输出'
+    },
+    'pika': {
+        name: 'Pika Labs 1.0',
+        maxTokens: 300,
+        promptTemplate: (shot) => {
+            const cameraInfo = `${shot.camera.movement} ${shot.camera.angle} ${shot.camera.shotSize}`;
+            return `${shot.title}: ${cameraInfo}, ${shot.content.subject}, ${shot.style || 'anime'}`;
+        },
+        description: '专业动画风格支持，快速生成，多镜头同步'
+    }
+};
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { videoParams, platformMapping };
+}

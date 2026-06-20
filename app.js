@@ -1,4 +1,6 @@
 // Video Prompt Generator - 应用主逻辑
+// 导入参数数据和平台映射
+const { videoParams, platformMapping } = videoParams;
 document.addEventListener('DOMContentLoaded', function() {
     initializeApp();
 });
@@ -666,4 +668,66 @@ function exportStoryboard() {
     
     // 显示成功消息
     alert(`成功导出 ${shots.length} 个镜头的分镜数据！`);
+}
+
+// 多平台导出功能
+function exportPlatformPrompts() {
+    if (shots.length === 0) {
+        alert('没有可导出的镜头！');
+        return;
+    }
+    
+    const selectedPlatform = document.getElementById('platformSelect').value;
+    const platform = platformMapping[selectedPlatform];
+    
+    if (!platform) {
+        alert('无效的平台选择！');
+        return;
+    }
+    
+    // 生成针对特定平台的提示词
+    const platformData = {
+        platform: platform.name,
+        platformId: selectedPlatform,
+        createdAt: new Date().toISOString(),
+        totalDuration: shots.reduce((total, shot) => total + shot.duration, 0),
+        shots: shots.map((shot, index) => {
+            const prompt = platform.promptTemplate(shot);
+            return {
+                id: shot.id,
+                order: index + 1,
+                title: shot.title,
+                duration: shot.duration,
+                prompt: prompt,
+                originalPrompt: generateOriginalPrompt(shot)
+            };
+        }),
+        metadata: {
+            maxTokens: platform.maxTokens,
+            description: platform.description,
+            totalPrompts: shots.length
+        }
+    };
+    
+    // 创建下载链接
+    const dataStr = JSON.stringify(platformData, null, 2);
+    const dataBlob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(dataBlob);
+    
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${selectedPlatform}_prompts_${new Date().toISOString().split('T')[0]}.json`;
+    link.click();
+    
+    URL.revokeObjectURL(url);
+    
+    // 显示成功消息
+    alert(`成功导出 ${shots.length} 个镜头的${platform.name}提示词！`);
+}
+
+// 生成原始提示词的辅助函数
+function generateOriginalPrompt(shot) {
+    const cameraInfo = `camera ${shot.camera.movement}, ${shot.camera.angle}, ${shot.camera.shotSize}`;
+    const contentInfo = `${shot.content.subject}, ${shot.content.mood}, ${shot.content.atmosphere}`;
+    return `${shot.title}: ${cameraInfo}, ${contentInfo}${shot.style ? ', ' + shot.style : ''}`;
 }
