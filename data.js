@@ -1,9 +1,5 @@
 // Video Prompt Generator - 参数数据结构
 const videoParams = {
-    // 为了向后兼容，添加module.exports
-    __esModule: true,
-    default: videoParams,
-    videoParams: videoParams,
     
     // 相机运动参数
     cameraMovement: [
@@ -262,6 +258,114 @@ const videoParams = {
                 shotSize: "Medium Close Up",
                 movementSpeed: "Slow Motion"
             }
+        }
+    ],
+    
+    // Phase 2: 风格预设系统
+    stylePresets: [
+        {
+            id: "cyberpunk",
+            name: "赛博朋克",
+            category: "科幻",
+            description: "高科技低生活的未来都市风格，霓虹灯、雨夜、机械义体",
+            keyElements: ["neon lights", "rain", "cybernetics", "future city", "digital glitch"],
+            colorScheme: "dark blues, purples, neon pinks and greens",
+            lighting: "dramatic backlighting, neon glow",
+            mood: "dystopian, technological, mysterious",
+            cameraStyle: "Dynamic camera movements, Dutch angles, extreme close ups",
+            typicalShots: ["low angle shots", "extreme close ups", "tracking shots"],
+            examples: "Blade Runner 2049, Ghost in the Shell, Cyberpunk 2077"
+        },
+        {
+            id: "noir",
+            name: "黑色电影",
+            category: "经典",
+            description: "经典的黑白侦探片风格，阴影、雨伞、硬汉侦探",
+            keyElements: ["black and white", "shadows", "rain", "detective", "crime"],
+            colorScheme: "high contrast black and white, limited grays",
+            lighting: "hard shadows, rim lighting, chiaroscuro",
+            mood: "mysterious, tense, fatalistic",
+            cameraStyle: "low angles, Dutch angles, chiaroscuro lighting",
+            typicalShots: ["low angle shots", "shadow patterns", "close ups on faces"],
+            examples: "The Maltese Falcon, Double Indemnity, Chinatown"
+        },
+        {
+            id: "documentary",
+            name: "纪录片",
+            category: "纪实",
+            description: "真实自然的纪录片拍摄风格，手持镜头，自然光",
+            keyElements: ["handheld", "natural light", "interview", "real people", "authentic"],
+            colorScheme: "natural colors, slight desaturation",
+            lighting: "available light, naturalistic",
+            mood: "realistic, authentic, engaging",
+            cameraStyle: "handheld camera, intimate, observational",
+            typicalShots: ["long shots", "medium shots", "reaction shots"],
+            examples: "Planet Earth, The Act of Killing, Hoop Dreams"
+        },
+        {
+            id: "vintage",
+            name: "复古",
+            category: "怀旧",
+            description: "老电影风格，胶片颗粒，暖色调，经典构图",
+            keyElements: ["film grain", "warm tones", "vintage camera", "soft focus", "golden hour"],
+            colorScheme: "warm yellows, browns, sepia tones",
+            lighting: "soft natural light, golden hour",
+            mood: "nostalgic, romantic, timeless",
+            cameraStyle: "classical composition, steady camera, soft focus",
+            typicalShots: ["wide establishing shots", "symmetrical compositions", "long takes"],
+            examples: "The Grand Budapest Hotel, Amélie, Midnight in Paris"
+        },
+        {
+            id: "horror",
+            name: "恐怖",
+            category: "惊悚",
+            description: "恐怖片风格，对比强烈的光影，快速剪辑，紧张氛围",
+            keyElements: ["jump scares", "dark shadows", "quick cuts", "close ups", "tense music"],
+            colorScheme: "deep blacks, blood reds, cold blues",
+            lighting: "extreme contrast, sudden darkness",
+            mood: "terrifying, suspenseful, intense",
+            cameraStyle: "shaky camera, quick movements, point of view shots",
+            typicalShots: ["POV shots", "extreme close ups", "dark silhouette"],
+            examples: "Get Out, Hereditary, The Conjuring"
+        },
+        {
+            id: "anime",
+            name: "动漫",
+            category: "动画",
+            description: "日式动漫风格，夸张表情，动态线条，鲜艳色彩",
+            keyElements: ["exaggerated expressions", "dynamic lines", "bright colors", "chibi elements", "speed lines"],
+            colorScheme: "vibrant, saturated colors, cel-shaded",
+            lighting: "flat lighting, cel shading, dramatic highlights",
+            mood: "expressive, energetic, emotional",
+            cameraStyle: "dynamic angles, extreme close ups, expressive compositions",
+            typicalShots: ["extreme close ups", "speed lines", "dramatic angles"],
+            examples: "Your Name, Akira, Demon Slayer"
+        },
+        {
+            id: "western",
+            name: "西部",
+            category: "经典",
+            description: "西部片风格，广袤沙漠，金色阳光，经典枪战",
+            keyElements: ["desert", "cowboy", "horse", "saloon", "sunset"],
+            colorScheme: "earthy tones, golden yellows, dusty browns",
+            lighting: "harsh sunlight, long shadows, golden hour",
+            mood: "epic, adventurous, tense",
+            cameraStyle: "wide landscapes, low angles, establishing shots",
+            typicalShots: ["wide landscapes", "low angle shots", "quick draws"],
+            examples: "Once Upon a Time in the West, The Good, the Bad and the Ugly"
+        },
+        {
+            id: "sci-fi",
+            name: "科幻",
+            category: "未来",
+            description: "科幻大片风格，未来科技，太空场景，视觉效果",
+            keyElements: ["futuristic", "spaceship", "alien", "technology", "digital effects"],
+            colorScheme: "cool blues, silvers, neon accents",
+            lighting: "clean, futuristic, high-tech",
+            mood: "awe-inspiring, technological, futuristic",
+            cameraStyle: "smooth movements, wide establishing shots, tracking shots",
+            typicalShots: ["wide space shots", "tracking shots", "futuristic landscapes"],
+            examples: "2001: A Space Odyssey, Interstellar, Blade Runner"
         }
     ]
 };
